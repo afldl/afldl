@@ -1,0 +1,40 @@
+{
+    "version": "v1",
+    "local_ip": "10.10.10.5",
+    "remote_ip": "10.10.10.24",
+    "psk": "123456",
+    "iface": "ens37",
+    "out_dir": "winserver_v1",
+    "alphabet":["main_mode_1", "main_mode_2", "main_mode_3", "quick_mode_1", "quick_mode_2", "delete_ESP","delete_IKE"],
+    "IPSEC_CONFIG":{
+        "IKE_attr_values" : {
+            "ENCR" : "_3DES_CBC",
+            "HASH": "SHA1",
+            "DH":"DH_2"
+        },
+        "ESP_attr_values":{
+            "AUTH":"AUTH_HMAC_SHA1"
+        },
+        "AH_attr_values":{
+            "ENC_MODE":"TRNS",
+            "AUTH":"AUTH_HMAC_SHA1"
+        },
+        "ESP_T_id":"ENCR_3DES",
+        "AH_T_id":"AUTH_HMAC_SHA1",
+        "quick_mode_group_config":{
+            "GRP_DESC": 2,
+            "ENC_MODE":"TRNS",
+            "LIFE_TYPE":1,
+            "DURATION": 3600,
+            "PORT":1701
+        }
+    },
+    "must_query_result":{"['main_mode_1']":"['main_mode_1']"},
+
+    "cache_db" : "True"
+
+
+    
+
+
+}

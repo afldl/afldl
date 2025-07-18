@@ -1,0 +1,11 @@
+networkx
+pandas
+numpy
+pyopenssl
+scapy
+ecdsa
+pydot
+paramiko
+Pillow
+colorama
+ltlf2dfa

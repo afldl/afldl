@@ -1,0 +1,4 @@
+binaries/yannakakis --prefix buggy --seed 123456789 = random 4 4
+binaries/yannakakis --seed 70 = fixed 2 4
+Hypothesis 0 after: 2541ms
+Membership: 792

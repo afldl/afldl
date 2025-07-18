@@ -1,0 +1,41 @@
+{
+    "version": "v2",
+    "local_ip": "11.11.11.10",
+    "remote_ip": "11.11.11.16",
+    "psk": "123456",
+    "iface": "ens38",
+    "out_dir": "juniper_srx300_v2",
+    "alphabet":["SAINIT_SA-KE-NONCE", "AUTH_IDi-AUTH-SA-TSi-TSr", "CHILDSA_SA-NONCE-TSi-TSr",   "INFO_DelChild", "INFO_DelIKE"],
+    "IPSEC_CONFIG":{
+        "IKE":{
+            "ENCR": "ENCR_AES_CBC",
+            "PRF": "PRF_HMAC_SHA1",
+            "KeyLength": "AES_128",
+            "INTEG":"AUTH_HMAC_SHA1_96",
+            "DH":"DH_2",
+            "ESN":""
+        },
+        "ESP":{
+            "ENCR": "ENCR_AES_CBC",
+            "PRF": "",
+            "KeyLength": "AES_128",
+            "INTEG":"AUTH_HMAC_SHA1_96",
+            "DH":"",
+            "ESN":"NO_ESN"
+        },
+        "AH":{
+            "ENCR": "",
+            "PRF": "",
+            "INTEG":"AUTH_HMAC_SHA1_96",
+            "DH":"",
+            "ESN":"NO_ESN"
+        }
+
+
+    },
+
+    "cache_db" : "True"
+
+
+
+}

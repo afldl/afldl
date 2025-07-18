@@ -1,0 +1,27 @@
+digraph formula_11 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3"];
+s4 [label="s4"];
+s6 [label="s6"];
+s9 [label="s9"];
+s10 [label="s10"];
+s11 [label="s11", shape=doublecircle];
+s1 -> s2  [label="mu"];
+s1 -> s3  [label="init_req"];
+s2 -> s2  [label="true"];
+s3 -> s2  [label="mu"];
+s3 -> s4  [label="init_resp"];
+s4 -> s2  [label="mu"];
+s4 -> s6  [label="auth_req"];
+s6 -> s2  [label="mu"];
+s6 -> s9  [label="auth_resp"];
+s9 -> s9  [label="mu"];
+s9 -> s10  [label="rekey_no_ke_req"];
+s10 -> s9  [label="mu"];
+s10 -> s11  [label="rekey_no_ke_resp"];
+s10 -> s10  [label="rekey_no_ke_req"];
+s11 -> s11  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

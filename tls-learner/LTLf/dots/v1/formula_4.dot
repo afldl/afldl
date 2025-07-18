@@ -1,0 +1,22 @@
+digraph formula_4 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3"];
+s5 [label="s5", shape=doublecircle];
+s6 [label="s6"];
+s1 -> s1  [label="mu"];
+s1 -> s2  [label="new_group_req"];
+s1 -> s3  [label="main_mode_3_req"];
+s2 -> s1  [label="mu"];
+s2 -> s5  [label="new_group_resp"];
+s2 -> s2  [label="new_group_req"];
+s2 -> s3  [label="main_mode_3_req"];
+s3 -> s1  [label="mu"];
+s3 -> s2  [label="new_group_req"];
+s3 -> s6  [label="main_mode_3_resp"];
+s3 -> s3  [label="main_mode_3_req"];
+s5 -> s5  [label="true"];
+s6 -> s6  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

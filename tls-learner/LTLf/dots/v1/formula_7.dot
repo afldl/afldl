@@ -1,0 +1,28 @@
+digraph formula_7 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3"];
+s4 [label="s4"];
+s5 [label="s5"];
+s7 [label="s7"];
+s8 [label="s8"];
+s9 [label="s9", shape=doublecircle];
+s1 -> s2  [label="mu"];
+s1 -> s3  [label="main_mode_1_req"];
+s2 -> s2  [label="true"];
+s3 -> s2  [label="mu"];
+s3 -> s4  [label="main_mode_1_resp"];
+s4 -> s4  [label="mu"];
+s4 -> s5  [label="aggressive_mode_1_req"];
+s5 -> s4  [label="mu"];
+s5 -> s7  [label="aggressive_mode_1_resp"];
+s5 -> s5  [label="aggressive_mode_1_req"];
+s7 -> s7  [label="mu"];
+s7 -> s8  [label="main_mode_3_req"];
+s8 -> s7  [label="mu"];
+s8 -> s9  [label="main_mode_3_resp"];
+s8 -> s8  [label="main_mode_3_req"];
+s9 -> s9  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

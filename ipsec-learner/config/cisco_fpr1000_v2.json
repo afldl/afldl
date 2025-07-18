@@ -1,0 +1,41 @@
+{
+    "version": "v2",
+    "local_ip": "11.11.11.10",
+    "remote_ip": "11.11.11.17",
+    "psk": "123456",
+    "iface": "ens38",
+    "out_dir": "cisco_fpr1000_v2",
+    "alphabet":["SAINIT_SA-KE-NONCE", "AUTH_IDi-AUTH-SA-TSi-TSr", "CHILDSA_SA-NONCE-TSi-TSr", "INFO_DelChild", "INFO_DelIKE"],
+    "IPSEC_CONFIG":{
+            "IKE":{
+                "ENCR": "ENCR_DES",
+                "PRF": "PRF_HMAC_SHA1",
+                "INTEG":"AUTH_HMAC_SHA1_96",
+                "DH":"DH_14",
+                "ESN":""
+            },
+            "ESP":{
+                "ENCR": "ENCR_DES",
+                "PRF": "",
+                "INTEG":"AUTH_HMAC_SHA1_96",
+                "DH":"",
+                "ESN":"NO_ESN"
+            },
+            "AH":{
+                "ENCR": "",
+                "PRF": "",
+                "INTEG":"AUTH_HMAC_SHA1_96",
+                "DH":"",
+                "ESN":"NO_ESN"
+            }
+            
+
+        },
+        "timeout":1,
+        "must_query_result":{"['SAINIT_SA-KE-NONCE', 'AUTH_IDi-AUTH-SA-TSi-TSr', 'INFO_DelIKE']":"['SAINIT_SA-KE-NONCE-VENDOR-VENDOR-402e-VENDOR', 'AUTH_VENDOR-IDr-AUTH-SA-TSi-TSr-400a-400b', 'INFO_DELETE']","['SAINIT_SA-KE-NONCE', 'AUTH_IDi-AUTH-SA-TSi-TSr', 'SAINIT_SA-KE-NONCE']":"['SAINIT_SA-KE-NONCE-VENDOR-VENDOR-402e-VENDOR', 'AUTH_VENDOR-IDr-AUTH-SA-TSi-TSr-400a-400b', 'SAINIT_7']","['SAINIT_SA-KE-NONCE', 'AUTH_IDi-AUTH-SA-TSi-TSr', 'SAINIT_SA-KE-NONCE', 'SAINIT_SA-KE-NONCE']":"['SAINIT_SA-KE-NONCE-VENDOR-VENDOR-402e-VENDOR', 'AUTH_VENDOR-IDr-AUTH-SA-TSi-TSr-400a-400b', 'SAINIT_7', 'SAINIT_7']"},
+
+        "cache_db" : "True"
+
+
+
+}

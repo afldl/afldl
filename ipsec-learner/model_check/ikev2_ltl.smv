@@ -1,0 +1,40 @@
+DEFINE Init := (inp=init_req & out=init_resp);
+DEFINE Auth := (inp=auth_req & out=auth_resp);
+DEFINE CreateChildSA := (inp=create_child_req & out=create_child_resp);
+DEFINE CreateOldChildSA := (inp=old_create_child_req & out=create_child_resp);
+DEFINE TestESP := (inp=ipsec_req & out=ipsec_resp);
+DEFINE RekeyIKESA := (inp=rekey_ike_req & out=rekey_ike_resp);
+DEFINE RekeyChildSA := (inp=rekey_child_sa_req & out=rekey_child_sa_resp);
+DEFINE DelIKESA := (inp=del_ike_req & out=del_ike_resp);
+DEFINE DelOldIKESA := (inp=old_del_ike_req & out=del_ike_resp);
+DEFINE IKEAlive := (inp=info_null_req & out!=no_response);
+
+-- In all cases, all IKE_SA_INIT exchanges MUST complete before any other exchange type, then all IKE_AUTH exchanges MUST complete, and following that, any number of CREATE_CHILD_SA and INFORMATIONAL exchanges may occur in any order.
+LTLSPEC NAME formula_1 := G ((out != no_response) -> O Init)
+LTLSPEC NAME formula_2 := G (Auth -> O Init)
+LTLSPEC NAME formula_3 := G (CreateChildSA -> O Auth)
+
+-- Mandatory The response with the authentication payload is received only after the request with the correct authentication payload has been sent.
+LTLSPEC NAME formula_4 := G ((inp != auth_req) -> (out != auth_resp))
+
+-- After successful authentication, IKE cannot be re-initialized on the current IKE channel.
+LTLSPEC NAME formula_5 := G ((Auth) -> X G (! Init))
+
+-- The effect of a successful authentication can be continued, and can't authenticate again.
+LTLSPEC NAME formula_6 := G ((Auth) -> X G (! Auth))
+
+-- Except when using this option to negotiate transport mode, all Child SAs will use tunnel mode.
+LTLSPEC NAME formula_7 := G ((inp != create_child_transmode_req) -> (out != create_child_transmode_resp))
+
+-- ESP and AH SAs always exist in pairs, with one SA in each direction. When an SA is closed, both members of the pair MUST be closed (that is, deleted).
+LTLSPEC NAME formula_8 := G ((inp=ipsec_req | inp=old_ipsec_req) -> (out != ipsec_mismatch_resp))
+
+-- Deleting an IKE SA implicitly closes any remaining Child SAs negotiated under it. The response to a request that deletes the IKE SA is an empty INFORMATIONAL response.
+LTLSPEC NAME formula_9 := G (DelIKESA -> X G (! (CreateChildSA | TestESP)))
+LTLSPEC NAME formula_10 := G (DelOldIKESA -> X G (! CreateOldChildSA))
+
+-- The main reason for rekeying the IKE SA is to ensure that the compromise of old keying material does not provide information about the current keys, or vice versa. Therefore, implementations MUST perform a new Diffie-Hellman exchange when rekeying the IKE SA. In other words, an initiator MUST NOT propose the value "NONE" for the Diffie-Hellman transform, and a responder MUST NOT accept such a proposal.
+LTLSPEC NAME formula_11 := G((inp=rekey_no_ke_req) -> ((out != rekey_no_ke_resp) | (out != rekey_ike_resp)))
+
+-- Once a peer receives a request to rekey an IKE SA or sends a request to rekey an IKE SA, it SHOULD NOT start any new CREATE_CHILD_SA exchanges on the IKE SA that is being rekeyed.
+LTLSPEC NAME formula_12 := G(RekeyIKESA -> X G (! CreateOldChildSA))

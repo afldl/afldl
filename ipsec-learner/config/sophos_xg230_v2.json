@@ -1,0 +1,42 @@
+{
+    "version": "v2",
+    "local_ip": "11.11.11.10",
+    "remote_ip": "11.11.11.27",
+    "psk": "123456",
+    "iface": "ens38",
+    "out_dir": "sophos_xg230_v2",
+    "alphabet":["SAINIT_SA-KE-NONCE", "AUTH_IDi-AUTH-SA-TSi-TSr", "CHILDSA_SA-KE-NONCE-TSi-TSr",  "INFO_DelChild", "INFO_DelIKE"],
+    "IPSEC_CONFIG":{
+            "IKE":{
+                "ENCR": "ENCR_AES_CBC",
+                "PRF": "PRF_HMAC_SHA2_256",
+                "KeyLength": "AES_256",
+                "INTEG":"AUTH_HMAC_SHA2_256_128",
+                "DH":"DH_14",
+                "ESN":""
+            },
+            "ESP":{
+                "ENCR": "ENCR_AES_CBC",
+                "PRF": "",
+                "KeyLength": "AES_256",
+                "INTEG":"AUTH_HMAC_SHA2_256_128",
+                "DH":"",
+                "ESN":"NO_ESN"
+            },
+            "AH":{
+                "ENCR": "",
+                "PRF": "",
+                "INTEG":"AUTH_HMAC_SHA1_96",
+                "DH":"",
+                "ESN":"NO_ESN"
+            }
+
+
+        },
+        "must_query_result":{"['SAINIT_SA-KE-NONCE', 'AUTH_IDr-AUTH-SA-TSi-TSr', 'CHILDSA_SA-NONCE-TSi-TSr']":"['SAINIT_SA-KE-NONCE-4014', 'AUTH_IDr-AUTH-SA-TSi-TSr', 'CHILDSA_SA-NONCE-TSi-TSr']","['SAINIT_SA-KE-NONCE', 'AUTH_IDi-AUTH-SA-TSi-TSr']":"['SAINIT_SA-KE-NONCE-4014', 'AUTH_IDr-AUTH-SA-TSi-TSr']","['SAINIT_SA-KE-NONCE', 'AUTH_IDi-AUTH-SA-TSi-TSr', 'INFO_DelIKE']":"['SAINIT_SA-KE-NONCE-4014', 'AUTH_IDr-AUTH-SA-TSi-TSr', 'INFO_DelIKE']"},
+        "cache_db":"True"
+
+
+
+
+}

@@ -1,0 +1,20 @@
+digraph bug_2 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3", shape=doublecircle];
+s5 [label="s5", shape=doublecircle];
+s1 -> s1  [label="μ"];
+s1 -> s2  [label="client_cert"];
+s2 -> s2  [label="client_cert"];
+s2 -> s2  [label="μ"];
+s2 -> s3  [label="client_appdata"];
+s2 -> s1  [label="client_certver"];
+s3 -> s2  [label="client_cert"];
+s3 -> s2  [label="μ"];
+s3 -> s5  [label="server_appdata"];
+s3 -> s3  [label="client_appdata"];
+s3 -> s1  [label="client_certver"];
+s5 -> s5  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

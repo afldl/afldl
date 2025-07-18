@@ -1,0 +1,27 @@
+DEFINE MainMode1 := (inp=main_mode_1_req & out=main_mode_1_resp);
+DEFINE MainMode2 := (inp=main_mode_2_req & out=main_mode_2_resp);
+DEFINE MainMode3 := (inp=main_mode_3_req & out=main_mode_3_resp);
+DEFINE AggrMode1 := (inp=aggressive_mode_1_req & out=aggressive_mode_1_resp);
+DEFINE AggrMode2 := (inp=aggressive_mode_2_req & out=no_response);
+DEFINE QuickMode1 := (inp=quick_mode_1_req & out=quick_mode_1_resp);
+DEFINE QuickMode2 := (inp=quick_mode_2_req & (out=no_response | out=quick_mode_2_resp));
+DEFINE NewGroup := (inp=new_group_req & out=no_new_group_resp);
+
+-- The SA payload MUST precede all other payloads in a phase 1 exchange.
+LTLSPEC NAME formula_1 := G (MainMode2 -> O MainMode1)
+
+-- Only the correct Main_Mode_3_req can pass authentication.
+LTLSPEC NAME formula_2 := G ((inp != main_mode_3_req) -> (out != main_mode_3_resp))
+
+-- “New Group Mode” MUST ONLY be used after phase 1.
+LTLSPEC NAME formula_3 := G (NewGroup -> O MainMode3)
+
+-- “Main Mode” for phase 1 provides identity protection.
+LTLSPEC NAME formula_4 := G ((inp=main_mode_3_req) -> (out != plain_main_mode_3_resp))
+
+-- Implementations MUST NOT switch exchange types in the middle of an exchange.
+LTLSPEC NAME formula_5 := G (MainMode1 -> X G ! AggrMode1)
+LTLSPEC NAME formula_6 := G (AggrMode1 -> X G ! MainMode1)
+
+
+out : {KEXINIT_DISCONNECT, CH_NONE, KEXINIT, NO_CONN, CH_MAX, DISCONNECT, NO_RESP, KEX31_NEWKEYS, SR_ACCEPT, UA_FAILURE, UNIMPL, UA_SUCCESS, CH_OPEN_SUCCESS, CH_SUCCESS, CH_CLOSE, KEX31_NEWKEYS_BUFFERED, NEWKEYS, KEX31_NEWKEYS, KEX31_NEWKEYS_BUFFERED};

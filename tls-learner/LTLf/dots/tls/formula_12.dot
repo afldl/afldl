@@ -1,0 +1,18 @@
+digraph formula_12 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3"];
+s4 [label="s4"];
+s5 [label="s5", shape=doublecircle];
+s1 -> s2  [label="μ"];
+s1 -> s3  [label="clienthello"];
+s2 -> s2  [label="true"];
+s3 -> s3  [label="μ"];
+s3 -> s4  [label="clienthello"];
+s4 -> s5  [label="μ"];
+s4 -> s3  [label="no_response"];
+s4 -> s3  [label="unexpected_message"];
+s5 -> s5  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

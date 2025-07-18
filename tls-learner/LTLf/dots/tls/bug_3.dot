@@ -1,0 +1,16 @@
+digraph bug_3 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3"];
+s4 [label="s4", shape=doublecircle];
+s1 -> s1  [label="μ"];
+s1 -> s2  [label="client_closure_alert"];
+s2 -> s2  [label="μ"];
+s2 -> s3  [label="client_closure_alert"];
+s2 -> s3  [label="other_inp"];
+s3 -> s4  [label="μ"];
+s3 -> s2  [label="no_response"];
+s4 -> s4  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

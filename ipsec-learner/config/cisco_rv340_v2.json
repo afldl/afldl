@@ -1,0 +1,44 @@
+{
+    "version": "v2",
+    "local_ip": "10.10.10.5",
+    "remote_ip": "10.10.10.31",
+    "psk": "123456",
+    "iface": "ens37",
+    "out_dir": "cisco_rv340_v2",
+    "alphabet":["SAINIT_SA-KE-NONCE", "AUTH_IDi-AUTH-SA-TSi-TSr", "CHILDSA_SA-KE-NONCE-TSi-TSr", "INFO_DelChild", "INFO_DelIKE"],
+   "IPSEC_CONFIG":{
+        "IKE":{
+            "ENCR": "ENCR_AES_CBC",
+            "PRF": "PRF_HMAC_SHA1",
+            "KeyLength": "AES_128",
+            "INTEG":"AUTH_HMAC_SHA1_96",
+            "DH":"DH_2",
+            "ESN":""
+        },
+        "ESP":{
+            "ENCR": "ENCR_AES_CBC",
+            "PRF": "",
+            "KeyLength": "AES_128",
+            "INTEG":"AUTH_HMAC_SHA1_96",
+            "DH":"DH_2",
+            "ESN":"NO_ESN"
+        },
+        "AH":{
+            "ENCR": "",
+            "PRF": "",
+            "INTEG":"AUTH_HMAC_SHA1_96",
+            "DH":"",
+            "ESN":"NO_ESN"
+        }
+
+
+    },
+        "timeout":1,
+        "wait_time":2,
+        "must_query_result":{},
+
+        "cache_db" : "True"
+
+
+
+}

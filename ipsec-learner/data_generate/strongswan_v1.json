@@ -1,0 +1,33 @@
+{
+    "version": "v1",
+    "local_ip": "10.124.1.10",
+    "remote_ip": "10.124.1.20",
+    "implementation":"strongswan",
+    "psk": "123456",
+    "iface": "ens33",
+    "out_dir": "strongswan_v1",
+    "alphabet":["main_mode_1", "main_mode_2", "main_mode_3", "quick_mode_1", "quick_mode_2", "delete_ESP","delete_IKE","test_tunnel_ESP"],
+    "IPSEC_CONFIG":{
+        "IKE_attr_values" : {
+            "ENCR" : "AES_CBC",
+            "KEY_LENGTH":128,
+            "HASH": "SHA1",
+            "DH":"DH_5"
+        },
+        "ESP_attr_values":{
+            "AUTH":"AUTH_HMAC_SHA1",
+            "KEY_LENGTH":128
+        },
+        "AH_attr_values":{
+            "ENC_MODE":"TRNS",
+            "AUTH":"AUTH_HMAC_SHA1"
+        },
+        "ESP_T_id":"ENCR_AES_CBC",
+        "AH_T_id":"AUTH_HMAC_SHA1"
+
+    },
+    "wait_time": 0
+    
+
+
+}

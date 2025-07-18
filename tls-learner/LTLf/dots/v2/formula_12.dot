@@ -1,0 +1,34 @@
+digraph formula_12 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3"];
+s4 [label="s4"];
+s6 [label="s6"];
+s10 [label="s10"];
+s11 [label="s11"];
+s12 [label="s12"];
+s13 [label="s13"];
+s14 [label="s14", shape=doublecircle];
+s1 -> s2  [label="mu"];
+s1 -> s3  [label="init_req"];
+s2 -> s2  [label="true"];
+s3 -> s2  [label="mu"];
+s3 -> s4  [label="init_resp"];
+s4 -> s2  [label="mu"];
+s4 -> s6  [label="auth_req"];
+s6 -> s2  [label="mu"];
+s6 -> s10  [label="auth_resp"];
+s10 -> s10  [label="mu"];
+s10 -> s11  [label="del_ike_req"];
+s11 -> s10  [label="mu"];
+s11 -> s12  [label="del_ike_resp"];
+s11 -> s11  [label="del_ike_req"];
+s12 -> s12  [label="mu"];
+s12 -> s13  [label="ipsec_req"];
+s13 -> s12  [label="mu"];
+s13 -> s14  [label="ipsec_resp"];
+s13 -> s13  [label="ipsec_req"];
+s14 -> s14  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

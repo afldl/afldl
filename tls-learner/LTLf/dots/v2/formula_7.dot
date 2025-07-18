@@ -1,0 +1,27 @@
+digraph formula_7 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3"];
+s4 [label="s4"];
+s6 [label="s6"];
+s9 [label="s9"];
+s10 [label="s10", shape=doublecircle];
+s11 [label="s11"];
+s1 -> s2  [label="mu"];
+s1 -> s3  [label="init_req"];
+s2 -> s2  [label="true"];
+s3 -> s2  [label="mu"];
+s3 -> s4  [label="init_resp"];
+s4 -> s2  [label="mu"];
+s4 -> s6  [label="auth_req"];
+s6 -> s2  [label="mu"];
+s6 -> s9  [label="auth_resp"];
+s9 -> s9  [label="mu"];
+s9 -> s10  [label="create_child_transmode_resp"];
+s9 -> s11  [label="create_child_transmode_req"];
+s10 -> s10  [label="true"];
+s11 -> s9  [label="mu"];
+s11 -> s11  [label="create_child_transmode_req"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

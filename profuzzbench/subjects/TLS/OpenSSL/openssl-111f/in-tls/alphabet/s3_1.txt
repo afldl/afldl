@@ -1,0 +1,3 @@
+ClientHello s0
+ChangeCipherSpec s1
+Finish s1

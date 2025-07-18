@@ -1,0 +1,45 @@
+{
+    "version": "v2",
+    "local_ip": "10.10.10.5",
+    "remote_ip": "10.10.10.27",
+    "out_dir": "winserver_v2",
+    "psk": "123456",
+    "iface": "ens37",
+    "cert_file": "10.10.10.5.pfx",
+    "cert_passwd": "123",
+    "auth_mode": "cert",
+    "alphabet":["SAINIT_SA-KE-NONCE", "AUTH_IDi-CERT-AUTH-Conf-SA-TSi-TSr", "CHILDSA_SA-NONCE-TSi-TSr",   "INFO_DelChild", "INFO_DelIKE"],
+    "IPSEC_CONFIG":{
+        "IKE":{
+            "ENCR": "ENCR_3DES",
+            "PRF": "PRF_HMAC_SHA1",
+            "INTEG":"AUTH_HMAC_SHA1_96",
+            "DH":"DH_2",
+            "ESN":""
+        },
+        "ESP":{
+            "ENCR": "ENCR_3DES",
+            "PRF": "",
+            "INTEG":"AUTH_HMAC_SHA1_96",
+            "DH":"",
+            "ESN":"NO_ESN"
+        },
+        "AH":{
+            "ENCR": "",
+            "PRF": "",
+            "INTEG":"AUTH_HMAC_SHA1_96",
+            "DH":"",
+            "ESN":"NO_ESN"
+        },
+        "site2site": "True"
+
+
+    },
+    "must_query_result":{"['CHILDSA_SA-NONCE-TSi-TSr', 'SAINIT_SA-KE-NONCE']":"['No_response', 'SAINIT_SA-KE-NONCE-4004-4005-VENDOR-VENDOR-CERTREQ']",
+    "['SAINIT_SA-KE-NONCE']":"['SAINIT_SA-KE-NONCE-4004-4005-VENDOR-VENDOR-CERTREQ']"},
+
+    "cache_db" : "True"
+
+
+
+}

@@ -1,0 +1,72 @@
+digraph G {
+splines="line";
+concentrate = false;
+ratio=0.75;
+node [shape="circle",penwidth=3.0,fontsize=18];
+label=""
+s0
+s1
+s2
+s3
+s4
+s5
+s6
+s7
+s8
+s9
+s10
+s11
+s12
+s13
+s0 [label="s0"];
+s0 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>KEXINIT</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>KEXINIT</td></tr></table>>]
+s0 -> s2[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEX30</td><td>/</td><td>KEXINIT+UNIMPL</td></tr><tr><td>KEXINIT</td><td>/</td><td>KEXINIT</td></tr><tr><td>NEWKEYS</td><td>/</td><td>KEXINIT+UNIMPL</td></tr><tr><td>SR_AUTH</td><td>/</td><td>KEXINIT+UNIMPL</td></tr></table>>]
+s0 -> s1[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEXINIT_PROCEED</td><td>/</td><td>KEXINIT</td></tr></table>>]
+s1 [label="s1"];
+s1 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_CONN</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>NO_CONN</td></tr></table>>]
+s1 -> s2[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEX30</td><td>/</td><td>NO_RESP</td></tr><tr><td>NEWKEYS</td><td>/</td><td>NO_RESP</td></tr><tr><td>SR_AUTH</td><td>/</td><td>NO_RESP</td></tr></table>>]
+s2 [label="s2"];
+s2 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_CONN</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>NO_CONN</td></tr></table>>]
+s2 -> s4[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEX30</td><td>/</td><td>KEX31+NEWKEYS</td></tr></table>>]
+s2 -> s2[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>NEWKEYS</td><td>/</td><td>UNIMPL</td></tr><tr><td>SR_AUTH</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s3 [label="s3"];
+s3 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEX30</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_CONN</td></tr><tr><td>NEWKEYS</td><td>/</td><td>NO_CONN</td></tr><tr><td>SR_AUTH</td><td>/</td><td>NO_CONN</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>NO_CONN</td></tr></table>>]
+s4 [label="s4"];
+s4 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>NO_CONN</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>NO_CONN</td></tr></table>>]
+s4 -> s4[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEX30</td><td>/</td><td>UNIMPL</td></tr><tr><td>SR_AUTH</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s4 -> s5[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_RESP</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_RESP</td></tr></table>>]
+s4 -> s6[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>NEWKEYS</td><td>/</td><td>NO_RESP</td></tr></table>>]
+s5 [label="s5"];
+s5 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEX30</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_CONN</td></tr><tr><td>NEWKEYS</td><td>/</td><td>NO_CONN</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>NO_CONN</td></tr></table>>]
+s5 -> s5[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>SR_AUTH</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s6 [label="s6"];
+s6 -> s6[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>UNIMPL</td></tr><tr><td>KEX30</td><td>/</td><td>UNIMPL</td></tr><tr><td>KEXINIT_PROCEED</td><td>/</td><td>UNIMPL</td></tr><tr><td>KEXINIT</td><td>/</td><td>UNIMPL</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s6 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>NEWKEYS</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s6 -> s7[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>SR_AUTH</td><td>/</td><td>SR_ACCEPT</td></tr></table>>]
+s7 [label="s7"];
+s7 -> s7[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>UA_FAILURE</td></tr><tr><td>KEX30</td><td>/</td><td>UNIMPL</td></tr><tr><td>KEXINIT_PROCEED</td><td>/</td><td>UNIMPL</td></tr><tr><td>KEXINIT</td><td>/</td><td>UNIMPL</td></tr><tr><td>SR_AUTH</td><td>/</td><td>SR_ACCEPT</td></tr></table>>]
+s7 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>NEWKEYS</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s7 -> s8[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_OK</td><td>/</td><td>UA_SUCCESS+GLOBAL_REQUEST</td></tr></table>>]
+s8 [label="s8"];
+s8 -> s8[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>UNIMPL</td></tr><tr><td>KEX30</td><td>/</td><td>UNIMPL</td></tr><tr><td>SR_AUTH</td><td>/</td><td>UNIMPL</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s8 -> s9[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEXINIT_PROCEED</td><td>/</td><td>KEXINIT</td></tr></table>>]
+s8 -> s10[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEXINIT</td><td>/</td><td>KEXINIT</td></tr></table>>]
+s8 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>NEWKEYS</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s9 [label="s9"];
+s9 -> s10[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>NO_RESP</td></tr><tr><td>KEX30</td><td>/</td><td>NO_RESP</td></tr><tr><td>SR_AUTH</td><td>/</td><td>NO_RESP</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>NO_RESP</td></tr></table>>]
+s9 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_CONN</td></tr><tr><td>NEWKEYS</td><td>/</td><td>NO_RESP</td></tr></table>>]
+s10 [label="s10"];
+s10 -> s10[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>UNIMPL</td></tr><tr><td>SR_AUTH</td><td>/</td><td>UNIMPL</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s10 -> s11[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEX30</td><td>/</td><td>KEX31+NEWKEYS</td></tr></table>>]
+s10 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_CONN</td></tr><tr><td>NEWKEYS</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s11 [label="s11"];
+s11 -> s11[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>UNIMPL</td></tr><tr><td>KEX30</td><td>/</td><td>UNIMPL</td></tr><tr><td>SR_AUTH</td><td>/</td><td>UNIMPL</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s11 -> s12[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_RESP</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_RESP</td></tr></table>>]
+s11 -> s8[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>NEWKEYS</td><td>/</td><td>NO_RESP</td></tr></table>>]
+s12 [label="s12"];
+s12 -> s12[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>UNIMPL</td></tr><tr><td>SR_AUTH</td><td>/</td><td>UNIMPL</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>UNIMPL</td></tr></table>>]
+s12 -> s13[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEX30</td><td>/</td><td>KEX31+NEWKEYS</td></tr></table>>]
+s12 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_CONN</td></tr><tr><td>NEWKEYS</td><td>/</td><td>NO_CONN</td></tr></table>>]
+s13 [label="s13"];
+s13 -> s3[label=<<table border="0" cellpadding="1" cellspacing="0"><tr><td>UA_PW_NOK</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEX30</td><td>/</td><td>NO_CONN</td></tr><tr><td>KEXINIT_PROCEED</td><td>/</td><td>NO_RESP</td></tr><tr><td>KEXINIT</td><td>/</td><td>NO_RESP</td></tr><tr><td>NEWKEYS</td><td>/</td><td>NO_RESP</td></tr><tr><td>SR_AUTH</td><td>/</td><td>NO_CONN</td></tr><tr><td>UA_PW_OK</td><td>/</td><td>NO_CONN</td></tr></table>>]
+}

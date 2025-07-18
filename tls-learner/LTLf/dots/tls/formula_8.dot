@@ -1,0 +1,17 @@
+digraph formula_8 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3"];
+s4 [label="s4"];
+s5 [label="s5", shape=doublecircle];
+s1 -> s2  [label="μ"];
+s1 -> s3  [label="clienthello"];
+s2 -> s2  [label="true"];
+s3 -> s2  [label="μ"];
+s3 -> s4  [label="serverhello_with_psk"];
+s4 -> s4  [label="μ"];
+s4 -> s5  [label="server_certreq"];
+s5 -> s5  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

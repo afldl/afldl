@@ -1,0 +1,13 @@
+digraph formula_9 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3", shape=doublecircle];
+s1 -> s1  [label="mu"];
+s1 -> s2  [label="wrong_sa_main_mode_1_req"];
+s2 -> s1  [label="mu"];
+s2 -> s3  [label="main_mode_1_resp"];
+s2 -> s2  [label="wrong_sa_main_mode_1_req"];
+s3 -> s3  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

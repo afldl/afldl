@@ -1,0 +1,33 @@
+digraph formula_10 {
+s1 [label="s1"];
+s2 [label="s2"];
+s3 [label="s3"];
+s4 [label="s4"];
+s6 [label="s6"];
+s9 [label="s9"];
+s12 [label="s12"];
+s15 [label="s15"];
+s16 [label="s16"];
+s17 [label="s17", shape=doublecircle];
+s1 -> s2  [label="mu"];
+s1 -> s3  [label="main_mode_1_req"];
+s2 -> s2  [label="true"];
+s3 -> s2  [label="mu"];
+s3 -> s4  [label="main_mode_1_resp"];
+s4 -> s2  [label="mu"];
+s4 -> s6  [label="main_mode_2_req"];
+s6 -> s2  [label="mu"];
+s6 -> s9  [label="main_mode_2_resp"];
+s9 -> s2  [label="mu"];
+s9 -> s12  [label="main_mode_3_req"];
+s12 -> s2  [label="mu"];
+s12 -> s15  [label="main_mode_3_resp"];
+s15 -> s15  [label="mu"];
+s15 -> s16  [label="wrong_order_quick_mode_1_req"];
+s16 -> s15  [label="mu"];
+s16 -> s17  [label="quick_mode_1_resp"];
+s16 -> s16  [label="wrong_order_quick_mode_1_req"];
+s17 -> s17  [label="true"];
+__start0 [label="", shape=none];
+__start0 -> s1  [label=""];
+}

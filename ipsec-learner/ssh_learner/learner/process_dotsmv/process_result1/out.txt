@@ -1,0 +1,212 @@
+*** This is NuSMV 2.6.0 (compiled on Wed Oct 14 15:37:51 2015)
+*** Enabled addons are: compass
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Please report bugs to <Please report bugs to <nusmv-users@fbk.eu>>
+
+*** Copyright (c) 2010-2014, Fondazione Bruno Kessler
+
+*** This version of NuSMV is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of NuSMV is linked to the MiniSat SAT solver. 
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+-- specification  G (out = NO_CONN ->  G isSilent)  is true
+-- specification  G (hasReqAuth ->  O ((inp = NEWKEYS & out = NO_RESP) &  O ((inp = KEX30 & out = KEX31_NEWKEYS) &  O kexStarted)))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 1.1 <-
+    state = s0
+    inp = KEX30
+    out = KEXINIT_UNIMPL
+    isSilent = FALSE
+    hasReqAuth = FALSE
+    hasAuth = FALSE
+    authReq = FALSE
+    validAuthReq = FALSE
+    invalidAuthReq = FALSE
+    receivedNewKeys = FALSE
+    kexStarted = FALSE
+    connLost = FALSE
+  -> State: 1.2 <-
+    state = s2
+    out = KEX31_NEWKEYS
+    receivedNewKeys = TRUE
+  -> State: 1.3 <-
+    state = s4
+    inp = NEWKEYS
+    out = NO_RESP
+    receivedNewKeys = FALSE
+  -> State: 1.4 <-
+    state = s6
+    inp = SR_AUTH
+    out = SR_ACCEPT
+    hasReqAuth = TRUE
+  -- Loop starts here
+  -> State: 1.5 <-
+    state = s7
+    inp = KEXINIT
+    out = UNIMPL
+    hasReqAuth = FALSE
+  -> State: 1.6 <-
+-- specification  G (hasReqAuth -> ((( X (inp = KEXINIT -> (out = KEXINIT &  X (inp = KEX30 -> (out = KEX31_NEWKEYS &  X (inp = NEWKEYS -> out = NO_RESP)))))) U ((connLost | hasAuth) | kexStarted)) |  G ( X (inp = KEXINIT -> (out = KEXINIT &  X (inp = KEX30 -> (out = KEX31_NEWKEYS &  X (inp = NEWKEYS -> out = NO_RESP))))))))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 2.1 <-
+    state = s0
+    inp = KEXINIT
+    out = KEXINIT
+    isSilent = FALSE
+    hasReqAuth = FALSE
+    hasAuth = FALSE
+    authReq = FALSE
+    validAuthReq = FALSE
+    invalidAuthReq = FALSE
+    receivedNewKeys = FALSE
+    kexStarted = TRUE
+    connLost = FALSE
+  -> State: 2.2 <-
+    state = s2
+    inp = KEX30
+    out = KEX31_NEWKEYS
+    receivedNewKeys = TRUE
+    kexStarted = FALSE
+  -> State: 2.3 <-
+    state = s4
+    inp = NEWKEYS
+    out = NO_RESP
+    receivedNewKeys = FALSE
+  -> State: 2.4 <-
+    state = s6
+    inp = SR_AUTH
+    out = SR_ACCEPT
+    hasReqAuth = TRUE
+  -> State: 2.5 <-
+    state = s7
+    inp = KEX30
+    out = UNIMPL
+    hasReqAuth = FALSE
+  -- Loop starts here
+  -> State: 2.6 <-
+    inp = KEXINIT
+  -> State: 2.7 <-
+    inp = KEX30
+  -> State: 2.8 <-
+    inp = SR_AUTH
+    out = SR_ACCEPT
+    hasReqAuth = TRUE
+  -> State: 2.9 <-
+    inp = KEX30
+    out = UNIMPL
+    hasReqAuth = FALSE
+  -> State: 2.10 <-
+    inp = KEXINIT
+-- specification  G (out = NO_CONN ->  X ( G isSilent))  is true
+-- specification  G (kexStarted ->  X (((out != SR_ACCEPT & !kexStarted) U receivedNewKeys) |  G (out != SR_ACCEPT & !kexStarted)))  is true
+-- specification  G (((inp = SR_AUTH & out != NO_CONN) & state != s0) -> (out = SR_ACCEPT | out = NO_CONN))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 3.1 <-
+    state = s0
+    inp = KEXINIT
+    out = KEXINIT
+    isSilent = FALSE
+    hasReqAuth = FALSE
+    hasAuth = FALSE
+    authReq = FALSE
+    validAuthReq = FALSE
+    invalidAuthReq = FALSE
+    receivedNewKeys = FALSE
+    kexStarted = TRUE
+    connLost = FALSE
+  -> State: 3.2 <-
+    state = s2
+    inp = SR_AUTH
+    out = UNIMPL
+    kexStarted = FALSE
+  -> State: 3.3 <-
+    inp = KEXINIT
+    out = NO_CONN
+    isSilent = TRUE
+    connLost = TRUE
+  -- Loop starts here
+  -> State: 3.4 <-
+    state = s3
+    inp = UA_PW_NOK
+    authReq = TRUE
+    invalidAuthReq = TRUE
+  -> State: 3.5 <-
+-- specification  G ((hasReqAuth & !( O out = UA_SUCCESS_GLOBAL_REQUEST)) -> (((invalidAuthReq -> out = UA_FAILURE) U ((out = UA_SUCCESS_GLOBAL_REQUEST | connLost) | kexStarted)) |  G (invalidAuthReq -> (out = UA_FAILURE | out = NO_CONN))))  is true
+-- specification  G (out = UA_SUCCESS_GLOBAL_REQUEST ->  X ( G out != UA_SUCCESS_GLOBAL_REQUEST))  is true
+-- specification  G (out = UA_SUCCESS_GLOBAL_REQUEST ->  X (((authReq -> out = NO_RESP) U (!authReq & (kexStarted | connLost))) |  G (authReq -> out = NO_RESP)))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: LTL Counterexample 
+Trace Type: Counterexample 
+  -> State: 4.1 <-
+    state = s0
+    inp = KEXINIT
+    out = KEXINIT
+    isSilent = FALSE
+    hasReqAuth = FALSE
+    hasAuth = FALSE
+    authReq = FALSE
+    validAuthReq = FALSE
+    invalidAuthReq = FALSE
+    receivedNewKeys = FALSE
+    kexStarted = TRUE
+    connLost = FALSE
+  -> State: 4.2 <-
+    state = s2
+    inp = KEX30
+    out = KEX31_NEWKEYS
+    receivedNewKeys = TRUE
+    kexStarted = FALSE
+  -> State: 4.3 <-
+    state = s4
+    inp = NEWKEYS
+    out = NO_RESP
+    receivedNewKeys = FALSE
+  -> State: 4.4 <-
+    state = s6
+    inp = SR_AUTH
+    out = SR_ACCEPT
+    hasReqAuth = TRUE
+  -> State: 4.5 <-
+    state = s7
+    inp = UA_PW_OK
+    out = UA_SUCCESS_GLOBAL_REQUEST
+    hasReqAuth = FALSE
+    authReq = TRUE
+    validAuthReq = TRUE
+  -> State: 4.6 <-
+    state = s8
+    out = UNIMPL
+  -- Loop starts here
+  -> State: 4.7 <-
+    inp = KEXINIT
+    out = KEXINIT
+    authReq = FALSE
+    validAuthReq = FALSE
+    kexStarted = TRUE
+  -> State: 4.8 <-
+    state = s10
+    inp = KEX30
+    out = KEX31_NEWKEYS
+    receivedNewKeys = TRUE
+    kexStarted = FALSE
+  -> State: 4.9 <-
+    state = s11
+    inp = NEWKEYS
+    out = NO_RESP
+    receivedNewKeys = FALSE
+  -> State: 4.10 <-
+    state = s8
+    inp = KEXINIT
+    out = KEXINIT
+    kexStarted = TRUE

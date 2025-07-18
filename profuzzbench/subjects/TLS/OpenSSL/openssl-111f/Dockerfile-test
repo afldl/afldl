@@ -1,0 +1,94 @@
+FROM ubuntu:20.04
+
+# Install common dependencies
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get -y update && \
+    apt-get -y install sudo \ 
+    apt-utils \
+    build-essential \
+    openssl \
+    clang \
+    graphviz-dev \
+    git \
+    autoconf \
+    libgnutls28-dev \
+    libssl-dev \
+    llvm \
+    python3-pip \
+    nano \
+    net-tools \
+    vim \
+    gdb \
+    netcat \
+    strace \
+    wget \
+    cmake \
+    build-essential \
+    libgtk2.0-dev \
+   libavcodec-dev \
+   libavformat-dev \
+   libjpeg-dev \
+   libswscale-dev \
+   libtiff5-dev \
+   libgtk2.0-dev \
+   pkg-config \
+   unzip \
+   bash
+
+
+
+RUN chmod 777 /tmp
+
+RUN pip3 install gcovr==4.2
+
+# Use root as default username
+USER root
+WORKDIR /home/ubuntu
+
+# Import environment variable to pass as parameter to make (e.g., to make parallel builds with -j)
+ARG MAKE_OPT
+
+
+
+# Set up environment variables for AFLNet
+ENV WORKDIR="/home/ubuntu/experiments"
+ENV AFLNET="/home/ubuntu/aflnet"
+ENV PATH="${PATH}:${AFLNET}:/home/ubuntu/.local/bin:${WORKDIR}"
+ENV AFL_PATH="${AFLNET}"
+ENV AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 \
+    AFL_SKIP_CPUFREQ=1 \
+    AFL_NO_AFFINITY=1
+
+# Set up fuzzers
+RUN git clone https://gitee.com/zhangph12138/aflnet.git && \
+    cd aflnet && \
+    make clean all $MAKE_OPT && \
+    cd llvm_mode && make $MAKE_OPT
+
+RUN mkdir $WORKDIR
+
+COPY --chown=ubuntu:ubuntu key ${WORKDIR}/key
+COPY --chown=ubuntu:ubuntu rand.patch ${WORKDIR}/rand.patch
+
+# Set up environment variables for ASAN
+ENV ASAN_OPTIONS='abort_on_error=1:symbolize=0:detect_leaks=0:detect_stack_use_after_return=1:detect_container_overflow=0:poison_array_cookie=0:malloc_fill_byte=0:max_malloc_fill_size=16777216'
+
+# Download and compile OpenSSL for fuzzing
+RUN cd ${WORKDIR} && \
+    git clone https://gitee.com/zhangph12138/openssl.git && \
+    cd openssl && \
+    cp -r ${WORKDIR}/key ./ && \
+    git checkout OpenSSL_1_1_1f && \
+    patch -p1 < ${WORKDIR}/rand.patch && \
+    CC=afl-clang-fast ./config no-shared --with-rand-seed=none && \
+    CC=afl-clang-fast make $MAKE_OPT
+
+
+
+# Install TLS Fuzzer
+RUN cd ${WORKDIR} && \
+    git clone https://gitee.com/zhangph12138/tlsfucker.git && \
+    cd tlsfucker && \
+    python3 -m pip install --upgrade pip && \
+    pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple && \
+    pip install -r ./requirements.txt

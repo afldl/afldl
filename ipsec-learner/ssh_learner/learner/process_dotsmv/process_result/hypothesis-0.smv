@@ -1,0 +1,250 @@
+MODULE main
+VAR state : {s0,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10};
+inp : {main_mode_3, main_mode_1, delete_ESP, main_mode_2, delete_IKE, test_tunnel_ESP, quick_mode_1_with_group, quick_mode_2};
+out : {Notify_INVALID_HASH_INFORMATION, Response_main_mode_1, Response_No_response, Response_Other, Notify_UNSUPPORTED_CRITICAL_PAYLOAD, Response_main_mode_2, Response_main_mode_3, Notify_AUTHENTICATION_FAILED, Response_quick_mode_1, Notify_PAYLOAD_MALFORMED, Response_ESP_reply};
+ASSIGN
+init(state) := s0;
+next(state) := case
+state = s0 & inp = main_mode_3: s0;
+state = s0 & inp = main_mode_1: s1;
+state = s0 & inp = delete_ESP: s0;
+state = s0 & inp = main_mode_2: s0;
+state = s0 & inp = delete_IKE: s0;
+state = s0 & inp = test_tunnel_ESP: s0;
+state = s0 & inp = quick_mode_1_with_group: s0;
+state = s0 & inp = quick_mode_2: s0;
+state = s1 & inp = main_mode_3: s1;
+state = s1 & inp = main_mode_1: s3;
+state = s1 & inp = delete_ESP: s1;
+state = s1 & inp = main_mode_2: s2;
+state = s1 & inp = delete_IKE: s1;
+state = s1 & inp = test_tunnel_ESP: s1;
+state = s1 & inp = quick_mode_1_with_group: s1;
+state = s1 & inp = quick_mode_2: s3;
+state = s2 & inp = main_mode_3: s5;
+state = s2 & inp = main_mode_1: s2;
+state = s2 & inp = delete_ESP: s3;
+state = s2 & inp = main_mode_2: s4;
+state = s2 & inp = delete_IKE: s3;
+state = s2 & inp = test_tunnel_ESP: s2;
+state = s2 & inp = quick_mode_1_with_group: s3;
+state = s2 & inp = quick_mode_2: s3;
+state = s3 & inp = main_mode_3: s3;
+state = s3 & inp = main_mode_1: s3;
+state = s3 & inp = delete_ESP: s3;
+state = s3 & inp = main_mode_2: s3;
+state = s3 & inp = delete_IKE: s3;
+state = s3 & inp = test_tunnel_ESP: s3;
+state = s3 & inp = quick_mode_1_with_group: s3;
+state = s3 & inp = quick_mode_2: s3;
+state = s4 & inp = main_mode_3: s3;
+state = s4 & inp = main_mode_1: s4;
+state = s4 & inp = delete_ESP: s3;
+state = s4 & inp = main_mode_2: s4;
+state = s4 & inp = delete_IKE: s3;
+state = s4 & inp = test_tunnel_ESP: s4;
+state = s4 & inp = quick_mode_1_with_group: s3;
+state = s4 & inp = quick_mode_2: s3;
+state = s5 & inp = main_mode_3: s5;
+state = s5 & inp = main_mode_1: s5;
+state = s5 & inp = delete_ESP: s5;
+state = s5 & inp = main_mode_2: s5;
+state = s5 & inp = delete_IKE: s3;
+state = s5 & inp = test_tunnel_ESP: s5;
+state = s5 & inp = quick_mode_1_with_group: s6;
+state = s5 & inp = quick_mode_2: s5;
+state = s6 & inp = main_mode_3: s6;
+state = s6 & inp = main_mode_1: s6;
+state = s6 & inp = delete_ESP: s6;
+state = s6 & inp = main_mode_2: s6;
+state = s6 & inp = delete_IKE: s8;
+state = s6 & inp = test_tunnel_ESP: s6;
+state = s6 & inp = quick_mode_1_with_group: s7;
+state = s6 & inp = quick_mode_2: s9;
+state = s7 & inp = main_mode_3: s7;
+state = s7 & inp = main_mode_1: s7;
+state = s7 & inp = delete_ESP: s7;
+state = s7 & inp = main_mode_2: s7;
+state = s7 & inp = delete_IKE: s8;
+state = s7 & inp = test_tunnel_ESP: s7;
+state = s7 & inp = quick_mode_1_with_group: s7;
+state = s7 & inp = quick_mode_2: s7;
+state = s8 & inp = main_mode_3: s8;
+state = s8 & inp = main_mode_1: s8;
+state = s8 & inp = delete_ESP: s8;
+state = s8 & inp = main_mode_2: s8;
+state = s8 & inp = delete_IKE: s8;
+state = s8 & inp = test_tunnel_ESP: s8;
+state = s8 & inp = quick_mode_1_with_group: s8;
+state = s8 & inp = quick_mode_2: s8;
+state = s9 & inp = main_mode_3: s9;
+state = s9 & inp = main_mode_1: s9;
+state = s9 & inp = delete_ESP: s10;
+state = s9 & inp = main_mode_2: s9;
+state = s9 & inp = delete_IKE: s8;
+state = s9 & inp = test_tunnel_ESP: s9;
+state = s9 & inp = quick_mode_1_with_group: s6;
+state = s9 & inp = quick_mode_2: s9;
+state = s10 & inp = main_mode_3: s10;
+state = s10 & inp = main_mode_1: s10;
+state = s10 & inp = delete_ESP: s10;
+state = s10 & inp = main_mode_2: s10;
+state = s10 & inp = delete_IKE: s8;
+state = s10 & inp = test_tunnel_ESP: s10;
+state = s10 & inp = quick_mode_1_with_group: s6;
+state = s10 & inp = quick_mode_2: s10;
+esac;
+out := case
+state = s0 & inp = main_mode_3: Notify_INVALID_HASH_INFORMATION;
+state = s0 & inp = main_mode_1: Response_main_mode_1;
+state = s0 & inp = delete_ESP: Response_No_response;
+state = s0 & inp = main_mode_2: Response_No_response;
+state = s0 & inp = delete_IKE: Response_No_response;
+state = s0 & inp = test_tunnel_ESP: Response_Other;
+state = s0 & inp = quick_mode_1_with_group: Response_No_response;
+state = s0 & inp = quick_mode_2: Response_No_response;
+state = s1 & inp = main_mode_3: Notify_INVALID_HASH_INFORMATION;
+state = s1 & inp = main_mode_1: Notify_UNSUPPORTED_CRITICAL_PAYLOAD;
+state = s1 & inp = delete_ESP: Response_No_response;
+state = s1 & inp = main_mode_2: Response_main_mode_2;
+state = s1 & inp = delete_IKE: Response_No_response;
+state = s1 & inp = test_tunnel_ESP: Response_Other;
+state = s1 & inp = quick_mode_1_with_group: Notify_INVALID_HASH_INFORMATION;
+state = s1 & inp = quick_mode_2: Response_No_response;
+state = s2 & inp = main_mode_3: Response_main_mode_3;
+state = s2 & inp = main_mode_1: Response_No_response;
+state = s2 & inp = delete_ESP: Notify_UNSUPPORTED_CRITICAL_PAYLOAD;
+state = s2 & inp = main_mode_2: Response_No_response;
+state = s2 & inp = delete_IKE: Response_No_response;
+state = s2 & inp = test_tunnel_ESP: Response_Other;
+state = s2 & inp = quick_mode_1_with_group: Response_No_response;
+state = s2 & inp = quick_mode_2: Response_No_response;
+state = s3 & inp = main_mode_3: Response_No_response;
+state = s3 & inp = main_mode_1: Response_No_response;
+state = s3 & inp = delete_ESP: Response_No_response;
+state = s3 & inp = main_mode_2: Response_No_response;
+state = s3 & inp = delete_IKE: Response_No_response;
+state = s3 & inp = test_tunnel_ESP: Response_Other;
+state = s3 & inp = quick_mode_1_with_group: Response_No_response;
+state = s3 & inp = quick_mode_2: Response_No_response;
+state = s4 & inp = main_mode_3: Notify_AUTHENTICATION_FAILED;
+state = s4 & inp = main_mode_1: Response_No_response;
+state = s4 & inp = delete_ESP: Notify_UNSUPPORTED_CRITICAL_PAYLOAD;
+state = s4 & inp = main_mode_2: Response_No_response;
+state = s4 & inp = delete_IKE: Response_No_response;
+state = s4 & inp = test_tunnel_ESP: Response_Other;
+state = s4 & inp = quick_mode_1_with_group: Response_No_response;
+state = s4 & inp = quick_mode_2: Response_No_response;
+state = s5 & inp = main_mode_3: Response_No_response;
+state = s5 & inp = main_mode_1: Response_No_response;
+state = s5 & inp = delete_ESP: Response_No_response;
+state = s5 & inp = main_mode_2: Response_No_response;
+state = s5 & inp = delete_IKE: Response_No_response;
+state = s5 & inp = test_tunnel_ESP: Response_Other;
+state = s5 & inp = quick_mode_1_with_group: Response_quick_mode_1;
+state = s5 & inp = quick_mode_2: Notify_UNSUPPORTED_CRITICAL_PAYLOAD;
+state = s6 & inp = main_mode_3: Response_No_response;
+state = s6 & inp = main_mode_1: Response_No_response;
+state = s6 & inp = delete_ESP: Response_No_response;
+state = s6 & inp = main_mode_2: Response_No_response;
+state = s6 & inp = delete_IKE: Response_No_response;
+state = s6 & inp = test_tunnel_ESP: Response_No_response;
+state = s6 & inp = quick_mode_1_with_group: Notify_INVALID_HASH_INFORMATION;
+state = s6 & inp = quick_mode_2: Response_No_response;
+state = s7 & inp = main_mode_3: Response_No_response;
+state = s7 & inp = main_mode_1: Response_No_response;
+state = s7 & inp = delete_ESP: Response_No_response;
+state = s7 & inp = main_mode_2: Response_No_response;
+state = s7 & inp = delete_IKE: Response_No_response;
+state = s7 & inp = test_tunnel_ESP: Response_No_response;
+state = s7 & inp = quick_mode_1_with_group: Notify_PAYLOAD_MALFORMED;
+state = s7 & inp = quick_mode_2: Notify_PAYLOAD_MALFORMED;
+state = s8 & inp = main_mode_3: Response_No_response;
+state = s8 & inp = main_mode_1: Response_No_response;
+state = s8 & inp = delete_ESP: Response_No_response;
+state = s8 & inp = main_mode_2: Response_No_response;
+state = s8 & inp = delete_IKE: Response_No_response;
+state = s8 & inp = test_tunnel_ESP: Response_No_response;
+state = s8 & inp = quick_mode_1_with_group: Response_No_response;
+state = s8 & inp = quick_mode_2: Response_No_response;
+state = s9 & inp = main_mode_3: Response_No_response;
+state = s9 & inp = main_mode_1: Response_No_response;
+state = s9 & inp = delete_ESP: Response_No_response;
+state = s9 & inp = main_mode_2: Response_No_response;
+state = s9 & inp = delete_IKE: Response_No_response;
+state = s9 & inp = test_tunnel_ESP: Response_ESP_reply;
+state = s9 & inp = quick_mode_1_with_group: Response_quick_mode_1;
+state = s9 & inp = quick_mode_2: Notify_UNSUPPORTED_CRITICAL_PAYLOAD;
+state = s10 & inp = main_mode_3: Response_No_response;
+state = s10 & inp = main_mode_1: Response_No_response;
+state = s10 & inp = delete_ESP: Response_No_response;
+state = s10 & inp = main_mode_2: Response_No_response;
+state = s10 & inp = delete_IKE: Response_No_response;
+state = s10 & inp = test_tunnel_ESP: Response_No_response;
+state = s10 & inp = quick_mode_1_with_group: Response_quick_mode_1;
+state = s10 & inp = quick_mode_2: Notify_UNSUPPORTED_CRITICAL_PAYLOAD;
+esac;
+DEFINE isSilent := (out=NO_CONN);
+DEFINE hasReqAuth := (inp=SR_AUTH & out=SR_ACCEPT);
+DEFINE hasAuth := (out=UA_PW_OK);
+DEFINE authReq := (inp=UA_PW_OK | inp=UA_PW_NOK);
+DEFINE validAuthReq := (inp=UA_PW_OK);
+DEFINE invalidAuthReq := (inp=UA_PW_NOK);
+DEFINE receivedNewKeys := (out=NEWKEYS | out=KEX31_NEWKEYS);
+DEFINE kexStarted := (out=KEXINIT);
+-- DEFINE connLost:= out=NO_CONN | out=DISCONNECT;
+DEFINE connLost:= out=NO_CONN;
+
+
+-- General Properties
+-- Once a connection is lost, it is lost for good
+LTLSPEC NAME gen_one_conn := G (out=NO_CONN ->
+    G isSilent)
+    
+
+    
+-- Security Properties
+-- Transport Layer Security
+LTLSPEC NAME trans_sec := G ( hasReqAuth -> 
+    O ( (inp=NEWKEYS & out=NO_RESP) & 
+        O ( (inp=KEX30 & out=KEX31_NEWKEYS) & 
+            O kexStarted ) ) )
+            
+
+-- Rekey properties
+-- Pre-auth rekey is possible
+LTLSPEC NAME pre-auth_rekey_pos := G ( hasReqAuth -> 
+         X (inp=KEXINIT -> out=KEXINIT & X ( inp=KEX30 -> out=KEX31_NEWKEYS & X (inp=NEWKEYS -> out=NO_RESP) ) ) U 
+         (connLost | hasAuth | kexStarted) | G X (inp=KEXINIT -> out=KEXINIT & X ( inp=KEX30 -> out=KEX31_NEWKEYS & X (inp=NEWKEYS -> out=NO_RESP) ) ) ) 
+
+
+-- Functional Properties
+--   Server sends DISCONNECT:    
+--   The sender MUST NOT send or receive any data after this message, and
+--   the recipient MUST NOT accept any data after receiving this message.
+LTLSPEC NAME trans_disc := G (out=NO_CONN -> 
+    X G (isSilent) )
+
+---- After sending a KEXINIT, the other side should not send another KEXINIT or SR_ACCEPT until it has sent NEWKEYS        
+LTLSPEC NAME trans_kexinit := G ( kexStarted -> 
+    X ( ( (out!=SR_ACCEPT & !kexStarted) U receivedNewKeys |
+    G (out!=SR_ACCEPT & !kexStarted) ) ) )
+    
+-- If the server rejects the service request, it SHOULD send an
+-- appropriate SSH_MSG_DISCONNECT message and MUST disconnect. 
+LTLSPEC NAME trans_sr := G ( (inp=SR_AUTH & out!=NO_CONN & state!=s0) -> 
+    (out=SR_ACCEPT | out=NO_CONN ) )
+    
+-- If the server rejects the authentication request, it MUST respond
+-- with the following: SSH_MSG_USERAUTH_FAILURE. *It may also disconnect on failed unauth attempts
+LTLSPEC NAME auth_ua_pre := G ( (hasReqAuth & !O out=UA_SUCCESS_GLOBAL_REQUEST) ->
+    ( (invalidAuthReq -> (out=UA_FAILURE) ) U (out=UA_SUCCESS_GLOBAL_REQUEST | connLost| kexStarted ) ) | G (invalidAuthReq -> (out=UA_FAILURE | out=NO_CONN) ) )
+
+-- SSH_MSG_USERAUTH_SUCCESS MUST be sent only once. 
+LTLSPEC NAME auth_ua_post := G ( (out=UA_SUCCESS_GLOBAL_REQUEST) ->
+    X G (out!=UA_SUCCESS_GLOBAL_REQUEST) )
+
+-- When SSH_MSG_USERAUTH_SUCCESS has been sent, any further authentication
+-- requests received after that SHOULD be silently ignored. *openssh sends UNIMPL, is that bad?    
+LTLSPEC NAME auth_ua_post_strong := G (out=UA_SUCCESS_GLOBAL_REQUEST ->
+     X ( ( authReq -> out=NO_RESP) U (!authReq & (kexStarted | connLost) ) | G (authReq -> out=NO_RESP) ) ) 
