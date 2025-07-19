@@ -72,9 +72,39 @@ python3 tls12_ltlfuzzing.py
 The sample output can be found in tls-learner\dots\openssl-111f-tls12.dot.
 
 
-2. get data 
+2. get dataset
+
+```
+python3 generate.py
+```
+
+training model
+
+```
+& python train.py --epochs 300 --batch_size 64 --learning_rate 0.001 --model "resnet50" --dataset_name "openssl12_sample100_state6" --dataset_path "data\\openssl12" --save_path "./" --interval 10 --num_classes 6 --protocol "openssl12"
+```
 
 
-## Contributing
+3 fuzzing 
 
-Contributions are welcome!
+you can use profuzzbench to run afldl
+
+
+```
+cd profuzzbench\subjects\TLS\OpenSSL\openssl-111w
+
+docker build . -t openssl-fuzz:111w --progress=plain
+
+docker run  --privileged -it   openssl-fuzz:111w  /bin/bash
+
+
+cd /home/ubuntu/afldl
+
+afl-fuzz -d -i /home/ubuntu/experiments/in-tls -x /home/ubuntu/experiments/tls.dict -o out-openssl-aflnet \
+-N tcp://127.0.0.1/4433 -P TLS -D 10000 -q 3 -s 3 -E -K -R -W 100 -t 5000+ -m none ./apps/openssl s_server -key key.pem -cert cert.pem -4 -naccept 1 -no_anti_replay
+
+
+```
+
+
+
